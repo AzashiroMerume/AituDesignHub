@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>How To Install Vue 3 in Laravel 9 with Vite</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>AituDesignHub</title>
 
     @vite('resources/css/app.css')
 </head>
