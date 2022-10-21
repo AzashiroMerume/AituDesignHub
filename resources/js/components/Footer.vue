@@ -1,27 +1,23 @@
 <template>
-    <header class="d-flex justify-content-center py-2 border-bottom">
-        <div class="container row text-center align-items-center">
-            <div class="col-4">
-                <h5 class="logo font-weight-normal m-0">
+    <footer class="border-top mt-3">
+        <div class="container row text-center align-items-center py-3">
+            <div class="col-6">
+                <h6 class="m-0">
                     <router-link to="/" class="special-font-1 text-decoration-none text-dark">AituDesignHub
                     </router-link>
-                </h5>
+                </h6>
             </div>
-            <div class="col-4 menu special-font-2">
+            <div class="col-6 menu">
                 <router-link to="/" class="text-decoration-none text-dark mx-4">Projects</router-link>
                 <router-link to="/teams" class="text-decoration-none text-dark mx-4">Teams</router-link>
                 <router-link to="/competions" class="text-decoration-none text-dark mx-4">Competitons</router-link>
             </div>
-            <div class="col-4 auth special-font-2 m-0">
-                <a href="#" class="text-decoration-none text-dark mx-3">Login</a>
-                <a href="#" class="btn btn-primary mx-3 special-btn-1">Register</a>
-            </div>
         </div>
-    </header>
+    </footer>
 </template>
 <script>
 export default {
-    name: 'Header',
+    name: 'Footer',
 }
 </script>
 <style>

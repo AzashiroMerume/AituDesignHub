@@ -7,7 +7,7 @@ import HeaderBlock from '../components/Header.vue';
 import FooterBlock from '../components/Footer.vue';
 
 export default {
-    name: 'main',
+    name: 'teams',
     data() {
         return {
 

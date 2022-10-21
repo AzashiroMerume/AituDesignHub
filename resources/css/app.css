@@ -1,3 +1,23 @@
 .special-font-1 {
-    font-family: 'Maven Pro', sans-serif;
+    font-family: "Maven Pro", sans-serif;
+}
+
+.special-font-2 {
+    font-family: "Work Sans", sans-serif;
+}
+
+.special-btn-1 {
+    background: linear-gradient(135deg, #fd6585 0%, #0d25b9 100%);
+    border-radius: 100px;
+    font-weight: 500;
+    padding: 7px 12px;
+    line-height: 18px;
+    letter-spacing: 0.04em;
+    color: #fffcfc;
+}
+
+.menu,
+.auth {
+    font-size: 15px;
+    font-weight: 500;
 }
