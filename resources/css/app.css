@@ -9,6 +9,7 @@
 .special-btn-1 {
     background: linear-gradient(135deg, #fd6585 0%, #0d25b9 100%);
     border-radius: 100px;
+    font-size: 14px;
     font-weight: 500;
     padding: 7px 12px;
     line-height: 18px;
@@ -16,8 +17,38 @@
     color: #fffcfc;
 }
 
+.logo a {
+    color: #000 !important;
+}
+
+.router-link-exact-active {
+    color: #062dfd !important;
+}
+
 .menu,
 .auth {
     font-size: 15px;
+    font-weight: 500;
+}
+
+.jumbotron {
+    margin: 10px auto;
+    height: 400px;
+}
+
+.jumbotron-middle {
+    height: 200px;
+    width: 800px;
+}
+
+.jumbotron-middle input {
+    width: 720px;
+}
+
+.projects {
+    margin: 10px 0px;
+}
+
+.project-type button {
     font-weight: 500;
 }
