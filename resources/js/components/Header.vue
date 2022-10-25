@@ -15,8 +15,8 @@
                     <router-link to="/competions" class="text-decoration-none text-dark mx-4">Competitons</router-link>
                 </div>
                 <div class="col-3 auth special-font-2 m-0">
-                    <a href="#" class="text-decoration-none text-dark mx-3">Login</a>
-                    <a href="#" class="btn btn-primary mx-3 special-btn-1">Register</a>
+                    <router-link to="#" class="text-decoration-none text-dark mx-3">Login</router-link>
+                    <router-link to="#" class="btn btn-primary mx-3 special-btn-1">Register</router-link>
                 </div>
             </div>
         </div>
@@ -25,6 +25,11 @@
 <script>
 export default {
     name: 'Header',
+    data() {
+        return {
+
+        }
+    }
 }
 </script>
 <style>
