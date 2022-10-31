@@ -1,7 +1,7 @@
 <template>
     <header-block></header-block>
     <jumbotron-block></jumbotron-block>
-    <projects-block></projects-block>
+    <projects-block :data="array"></projects-block>
     <footer-block></footer-block>
 </template>
 <script>
@@ -14,7 +14,16 @@ export default {
     name: 'main',
     data() {
         return {
-
+            array: [
+                'Hey',
+                'valdsfa',
+                'f',
+                'You',
+                'My',
+                'Old',
+                'Dear',
+                'Friend'
+            ]
         }
     },
     components: {

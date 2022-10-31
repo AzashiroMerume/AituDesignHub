@@ -52,3 +52,7 @@
 .project-type button {
     font-weight: 500;
 }
+
+.projects-card {
+    margin: 10px 0px;
+}

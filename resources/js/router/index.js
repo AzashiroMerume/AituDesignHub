@@ -1,18 +1,18 @@
 import { templateSettings } from "lodash";
 import { createRouter, createWebHistory } from "vue-router";
-import main from "../views/main.vue";
-import teams from "../views/teams.vue";
+import Main from "../views/Main.vue";
+import Teams from "../views/Teams.vue";
 
 const routes = [
     {
         path: "/",
-        name: "main",
-        component: main,
+        name: "Main",
+        component: Main,
     },
     {
         path: "/teams",
-        name: "teams",
-        component: teams,
+        name: "Teams",
+        component: Teams,
     }
 ];
 
