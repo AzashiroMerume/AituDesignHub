@@ -25,17 +25,17 @@
         <div class="container-fluid">
             <div class="row wrap">
                 <div class="col-3 vertical-menu shadow-sm">
-                    <div class="top-menu d-flex flex-column">
+                    <div class="top-menu d-flex flex-column align-items-start">
                         <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-house me-4"></i>Main</a>
+                                class="fa-solid fa-house me-3"></i>Main</a>
                         <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-person me-4"></i>Designers</a>
+                                class="fa-solid fa-person me-3"></i>Designers</a>
                         <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-trophy me-4"></i>Competitions</a>
+                                class="fa-solid fa-trophy me-3"></i>Competitions</a>
                         <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-clipboard me-4"></i>Vacancies</a>
+                                class="fa-solid fa-clipboard me-3"></i>Vacancies</a>
                     </div>
-                    <div class="subscriptions d-flex flex-column">
+                    <div class="subscriptions d-flex flex-column text-start">
                         <h6 class="text-white fw-bold">Subscriptions</h6>
                         <div class="channels"></div>
                     </div>
