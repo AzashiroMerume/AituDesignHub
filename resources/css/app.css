@@ -1,4 +1,61 @@
-/*
-#000428
-#004e92
-/*
+body {
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+header {
+    height: 60px;
+    border-bottom: 1px solid #fff;
+}
+
+.header-wrap {
+    padding: 10px 80px !important;
+}
+
+.logo {
+    font-family: "Lato", sans-serif;
+    color: white;
+    margin: 0px !important;
+}
+
+.search-input {
+    border-radius: 20px 0px 0px 20px;
+    border: 1px solid #fff;
+    background-color: transparent;
+}
+
+.search-btn {
+    border-radius: 0px 20px 20px 0px;
+    background: transparent;
+    color: white;
+}
+
+.wrap {
+    font-family: "Lato", sans-serif !important;
+}
+
+.vertical-menu {
+    border-right: 1px solid #fff;
+}
+
+.top-menu {
+    font-weight: bold;
+    border-bottom: 1px solid #fff;
+    padding: 10px 80px;
+}
+
+.subscriptions {
+    padding: 20px 80px;
+    height: 400px;
+    border-bottom: 1px solid #fff;
+}
+
+.bottom-menu {
+    padding: 20px 80px;
+}
+
+#home-category {
+    margin-top: 15px;
+    background-color: transparent;
+    border: 0px solid;
+}
+
