@@ -7,20 +7,29 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $tableName = 'users';
+
+    /**
      * Run the migrations.
+     * @table users
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+        Schema::create($this->tableName, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('nickname', 21);
+            $table->string('email', 45);
+            $table->string('firstname', 45)->nullable();
+            $table->string('surname', 45);
+            $table->string('password', 45);
+
+            $table->unique(["email"], 'email_UNIQUE');
         });
     }
 
@@ -31,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists($this->tableName);
     }
 };
