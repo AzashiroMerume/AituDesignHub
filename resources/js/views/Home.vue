@@ -11,18 +11,33 @@
             </div>
         </div>
         <div class="home-body">
-
+            <projects-block :projects="projects"></projects-block>
         </div>
     </div>
 </template>
 <script>
+import ProjectsBlock from '../components/ProjectsBlock.vue'
+import { useProjectStore } from '../store/ProjectStore.js'
 
 export default {
-    name: 'main',
+    name: 'home',
+    setup() {
+        const projectStore = useProjectStore()
+        projectStore.getProjects();
+        return { projectStore }
+    },
     data() {
         return {
 
         }
+    },
+    computed: {
+        projects() {
+            return this.projectStore.projects;
+        }
+    },
+    components: {
+        ProjectsBlock
     }
 }
 </script>

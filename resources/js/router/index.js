@@ -1,12 +1,12 @@
 import { templateSettings } from "lodash";
 import { createRouter, createWebHistory } from "vue-router";
-import Main from "../views/Main.vue";
+import Home from "../views/Home.vue";
 
 const routes = [
     {
         path: "/",
-        name: "Main",
-        component: Main,
+        name: "Home",
+        component: Home,
     },
 ];
 

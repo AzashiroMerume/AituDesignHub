@@ -29,6 +29,7 @@ return new class extends Migration
             $table->longText('project_description')->nullable();
             $table->text('project_preview')->nullable();
             $table->longText('project_content')->nullable();
+            $table->timestamps();
         });
     }
 
