@@ -10,11 +10,11 @@ return new class extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'users';
+    public $tableName = 'projects';
 
     /**
      * Run the migrations.
-     * @table users
+     * @table projects
      *
      * @return void
      */
@@ -23,14 +23,12 @@ return new class extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('nickname', 21);
-            $table->string('email', 45);
-            $table->string('firstname', 45)->nullable();
-            $table->string('surname', 45);
-            $table->string('password', 45);
-            $table->timestamps();
-
-            $table->unique(["email"], 'email_UNIQUE');
+            $table->unsignedBigInteger('owner_id');
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->string('project_name', 235);
+            $table->longText('project_description')->nullable();
+            $table->text('project_preview')->nullable();
+            $table->longText('project_content')->nullable();
         });
     }
 
