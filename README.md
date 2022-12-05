@@ -1,1 +1,1 @@
-AituWebDesign
+Design hub of Astana IT University
