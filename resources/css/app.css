@@ -58,3 +58,8 @@ header {
     background-color: transparent;
     border: 0px solid;
 }
+
+.card {
+    background-color: transparent;
+    border-color: white;
+}

@@ -25,10 +25,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('users');
-            $table->string('project_name', 235);
-            $table->longText('project_description')->nullable();
-            $table->text('project_preview')->nullable();
-            $table->longText('project_content')->nullable();
+            $table->string('name', 235);
+            $table->longText('description')->nullable();
+            $table->text('preview');
             $table->timestamps();
         });
     }

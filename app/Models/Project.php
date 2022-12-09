@@ -14,7 +14,6 @@ class Project extends Model
      * $this->attributes['project_name'] - string - contains the project name
      * $this->attributes['project_description'] - string - contains the project description
      * $this->attributes['project_preview'] - string - contains the project preview image name
-     * $this->attributes['project_content'] - string - contains names of project content images
      * $this->attributes['created_at'] - timestamp - contains the project creation date
      * $this->attributes['updated_at'] - timestamp - contains the project update date
      */
