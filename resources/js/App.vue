@@ -15,8 +15,8 @@
                     </form>
                 </div>
                 <div class="col-4 text-end">
-                    <a href="#" class="btn me-3 text-white">Log in</a>
-                    <a href="#" class="btn special-btn text-white">Sign in</a>
+                    <router-link to="/login" class="btn me-3 text-white">Log in</router-link>
+                    <router-link to="/register" class="btn special-btn text-white">Sign in</router-link>
                 </div>
             </div>
         </div>
