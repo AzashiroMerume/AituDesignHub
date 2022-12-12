@@ -76,11 +76,11 @@ export default {
             }
         }
     },
-    // beforeRouteEnter(to, from, next) {
-    //     if (window.Laravel.isLoggedin) {
-    //         return next('dashboard');
-    //     }
-    //     next();
-    // }
+    beforeRouteEnter(to, from, next) {
+        if (window.Laravel.isLoggedin) {
+            return next('dashboard');
+        }
+        next();
+    }
 }
 </script>
