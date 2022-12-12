@@ -55,15 +55,16 @@ export default {
         handleSubmit(e) {
             e.preventDefault();
             if (this.password.length > 0) {
-                this.$axios.get('/sanctum/csrf-cookie').then(response => {
-                    this.$axios.post('api/login', {
+                axios.get('/sanctum/csrf-cookie').then(response => {
+                    axios.post('api/login', {
                         email: this.email,
                         password: this.password
                     })
                         .then(response => {
                             console.log(response.data)
                             if (response.data.success) {
-                                this.$router.go('/dashboard');
+                                console.log('success');
+                                this.$router.push('/');
                             } else {
                                 this.error = response.data.message;
                             }
