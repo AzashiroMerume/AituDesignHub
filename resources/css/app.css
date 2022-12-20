@@ -1,5 +1,25 @@
 body {
-    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: hsla(225, 78%, 59%, 1);
+
+    background: linear-gradient(
+        90deg,
+        hsla(225, 78%, 59%, 1) 0%,
+        hsla(197, 85%, 51%, 1) 100%
+    );
+
+    background: -moz-linear-gradient(
+        90deg,
+        hsla(225, 78%, 59%, 1) 0%,
+        hsla(197, 85%, 51%, 1) 100%
+    );
+
+    background: -webkit-linear-gradient(
+        90deg,
+        hsla(225, 78%, 59%, 1) 0%,
+        hsla(197, 85%, 51%, 1) 100%
+    );
+
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#456FE8", endColorstr="#19B0EC", GradientType=1 );
 }
 
 header {
@@ -7,12 +27,20 @@ header {
     border-bottom: 1px solid #fff;
 }
 
+.special-font-1 {
+    font-family: "Sora", sans-serif;
+}
+
+.special-font-2 {
+    font-family: "Chivo Mono", monospace;
+}
+
 .header-wrap {
-    padding: 10px 80px !important;
+    padding: 10px 40px !important;
 }
 
 .logo {
-    font-family: "Lato", sans-serif;
+    font-family: "Sora", sans-serif;
     color: white;
     margin: 0px !important;
 }
@@ -20,7 +48,8 @@ header {
 .search-input {
     border-radius: 20px 0px 0px 20px;
     border: 1px solid #fff;
-    background-color: transparent;
+    background-color: transparent !important;
+    color: #fff !important;
 }
 
 .search-btn {
@@ -29,37 +58,32 @@ header {
     color: white;
 }
 
-.wrap {
-    font-family: "Noto Sans", sans-serif;
-}
-
 .vertical-menu {
     border-right: 1px solid #fff;
 }
 
 .top-menu {
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 16px;
     border-bottom: 1px solid #fff;
-    padding: 10px 60px;
+    padding: 10px 30px;
 }
 
 .subscriptions {
-    padding: 20px 60px;
+    padding: 20px 40px;
     height: 400px;
     border-bottom: 1px solid #fff;
 }
 
-.bottom-menu {
-    padding: 20px 60px;
-}
-
 #home-category {
     margin-top: 15px;
-    background-color: transparent;
-    border: 0px solid;
 }
 
 .card {
     background-color: transparent;
     border-color: white;
+}
+
+.login {
+    margin-top: 100px;
 }

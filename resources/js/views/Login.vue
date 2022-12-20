@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container login text-white">
         <div class="row justify-content-center">
             <div class="col-md-8">
 

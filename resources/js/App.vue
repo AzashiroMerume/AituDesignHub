@@ -2,16 +2,16 @@
     <header class="shadow-sm">
         <div class="header-wrap container-fluid">
             <div class="row justify-content-center align-items-center">
-                <div class="col-4">
-                    <h5 class="logo">
-                        <a href="#" class="text-decoration-none text-white">AituDesignHub</a>
-                    </h5>
+                <div class="col-4 d-flex justify-content-start align-items-center">
+                    <img src="../css/images/menu.png" alt="menu" class="me-3" />
+                    <h6 class="logo">
+                        <router-link to="/" class="text-decoration-none fw-bold text-white">AituDesignHub</router-link>
+                    </h6>
                 </div>
                 <div class="col-4 text-center">
                     <form class="d-flex" role="search">
                         <input class="search-input form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="search-btn btn btn-light btn-xs" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="search-btn btn btn-light" type="submit"><img src="../css/images/search.png" alt="search" width="25"/></button>
                     </form>
                 </div>
                 <div class="col-4 text-end">
@@ -23,20 +23,23 @@
     </header>
     <div class="main">
         <div class="container-fluid">
-            <div class="row wrap">
-                <div class="col-3 vertical-menu shadow-sm">
-                    <div class="top-menu d-flex flex-column align-items-start">
-                        <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-house me-3"></i>Main</a>
-                        <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-person me-3"></i>Designers</a>
-                        <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-trophy me-3"></i>Competitions</a>
-                        <a href="#" class="text-decoration-none my-3 text-white"><i
-                                class="fa-solid fa-clipboard me-3"></i>Vacancies</a>
+            <div class="row">
+                <div class="col-2 vertical-menu special-font-2 shadow-sm">
+                    <div class="top-menu d-flex flex-column justify-content-center align-items-start">
+                        <router-link to="/" class="text-decoration-none my-3 text-white"><img
+                                src="../css/images/home.png" alt="home" class="me-4" width="20" />Main</router-link>
+                        <router-link to="#" class="text-decoration-none my-3 text-white"><img
+                                src="../css/images/designer.png" alt="designer" class="me-4"
+                                width="20" />Designers</router-link>
+                        <router-link to="#" class="text-decoration-none my-3 text-white"><img
+                                src="../css/images/trophy.png" alt="trophy" class="me-4"
+                                width="20" />Competitions</router-link>
+                        <router-link to="#" class="text-decoration-none my-3 text-white"><img
+                                src="../css/images/vacancy.png" alt="vacancy" class="me-4"
+                                width="19" />Vacancies</router-link>
                     </div>
-                    <div class="subscriptions d-flex flex-column text-start">
-                        <h6 class="text-white fw-bold">Subscriptions</h6>
+                    <div class="subscriptions d-flex flex-column align-items-center">
+                        <h5 class="text-white fw-light">Subscriptions</h5>
                         <div class="channels"></div>
                     </div>
                     <div class="bottom-menu text-center d-flex flex-column align-items-center">
@@ -51,7 +54,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-10 special-font-1">
                     <router-view />
                 </div>
             </div>
