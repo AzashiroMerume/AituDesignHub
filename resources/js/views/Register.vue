@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container huge-m text-white special-font-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
 
@@ -7,43 +7,31 @@
                     {{ error }}
                 </div>
 
-                <div class="card card-default">
-                    <div class="card-header">Register</div>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group row">
-                                <label for="nickname" class="col-sm-4 col-form-label text-md-right">Nickname</label>
-                                <div class="col-md-6">
-                                    <input id="nickname" type="email" class="form-control" v-model="nickname" required autofocus
-                                        autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" v-model="email" required
-                                        autofocus autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" v-model="password"
-                                        required autocomplete="off">
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary" @click="handleSubmit">
-                                        Register
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                <div class="shadow-sm py-3 px-5 border">
+                    <div class="border-bottom">
+                        <h3 class="h3 special-font-1">Registration</h3>
                     </div>
+                    <div class="my-4">
+                        <label for="nickname" class="form-label h5">Nickname</label>
+                        <input type="text" class="form-control form-control-sm" v-model="nickname">
+                    </div>
+                    <div class="my-4">
+                        <label for="firstname" class="form-label h5">Firstname</label>
+                        <input type="text" class="form-control form-control-sm" v-model="firstname">
+                    </div>
+                    <div class="my-4">
+                        <label for="surname" class="form-label h5">Surname</label>
+                        <input type="text" class="form-control form-control-sm" v-model="surname">
+                    </div>
+                    <div class="my-4">
+                        <label for="email" class="form-label h5">Email</label>
+                        <input type="email" class="form-control form-control-sm" v-model="email">
+                    </div>
+                    <div class="my-4">
+                        <label for="password" class="form-label h5">Password</label>
+                        <input type="password" class="form-control form-control-sm" v-model="password">
+                    </div>
+                    <button type="submit" class="btn btn-danger" @click="handleSubmit">Submit</button>
                 </div>
             </div>
         </div>
@@ -55,6 +43,8 @@ export default {
     data() {
         return {
             nickname: "",
+            firstname: "",
+            surname: "",
             email: "",
             password: "",
             error: null
@@ -86,7 +76,7 @@ export default {
     },
     beforeRouteEnter(to, from, next) {
         if (window.Laravel.isLoggedin) {
-            return next('dashboard');
+            return next('/');
         }
         next();
     }
