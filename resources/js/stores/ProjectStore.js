@@ -12,11 +12,11 @@ export const useProjectStore = defineStore('project', {
     actions: {
         async getProjects() {
             try {
-                const res = await axios.get(`http://localhost/api/projects`);
-                this.projects = res.data;
+                const res = await axios.get(`http://localhost/api/projects`)
+                this.projects = res.data
             } catch (error) {
-                return error;
+                return error
             }
         }
     }
-});
+})

@@ -32,6 +32,7 @@ class UserController extends Controller
             'success' => $success,
             'message' => $message,
         ];
+
         return response()->json($response);
     }
 
@@ -55,6 +56,7 @@ class UserController extends Controller
             'success' => $success,
             'message' => $message,
         ];
+
         return response()->json($response);
     }
 
@@ -74,6 +76,7 @@ class UserController extends Controller
             'success' => $success,
             'message' => $message,
         ];
+
         return response()->json($response);
     }
 }

@@ -17,7 +17,7 @@
 </template>
 <script>
 import ProjectsBlock from '../components/ProjectsBlock.vue'
-import { useProjectStore } from '../store/ProjectStore.js'
+import { useProjectStore } from '../stores/ProjectStore'
 
 export default {
     name: 'home',

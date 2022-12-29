@@ -31,7 +31,7 @@
                         <label for="password" class="form-label h5">Password</label>
                         <input type="password" class="form-control form-control-sm" v-model="password">
                     </div>
-                    <button type="submit" class="btn btn-danger" @click="handleSubmit">Submit</button>
+                    <button type="submit" @click.prevent="register" class="btn btn-danger">Submit</button>
                 </div>
             </div>
         </div>
@@ -39,7 +39,15 @@
 </template>
 
 <script>
+import { useUserStore } from '../stores/UserStore'
+
 export default {
+    name: 'register',
+    setup() {
+        const userStore = useUserStore()
+
+        return { userStore }
+    },
     data() {
         return {
             nickname: "",
@@ -51,34 +59,9 @@ export default {
         }
     },
     methods: {
-        handleSubmit(e) {
-            e.preventDefault()
-            if (this.password.length > 0) {
-                axios.get('/sanctum/csrf-cookie').then(response => {
-                    axios.post('api/register', {
-                        nickname: this.nickname,
-                        email: this.email,
-                        password: this.password
-                    })
-                        .then(response => {
-                            if (response.data.success) {
-                                window.location.href = "/login"
-                            } else {
-                                this.error = response.data.message
-                            }
-                        })
-                        .catch(function (error) {
-                            console.error(error);
-                        });
-                })
-            }
+        register() {
+            this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
         }
     },
-    beforeRouteEnter(to, from, next) {
-        if (window.Laravel.isLoggedin) {
-            return next('/');
-        }
-        next();
-    }
 }
 </script>

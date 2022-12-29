@@ -19,7 +19,7 @@
                         <label for="password" class="form-label h5">Password</label>
                         <input type="password" class="form-control form-control-sm" v-model="password">
                     </div>
-                    <button type="submit" class="btn btn-danger" @click="handleSubmit">Submit</button>
+                    <button type="submit" @click.prevent="login" class="btn btn-danger">Submit</button>
                 </div>
             </div>
         </div>
@@ -27,7 +27,15 @@
 </template>
 
 <script>
+import { useUserStore } from '../stores/UserStore';
+
 export default {
+    name: 'login',
+    setup() {
+        const userStore = useUserStore()
+
+        return { userStore }
+    },
     data() {
         return {
             email: "",
@@ -36,35 +44,9 @@ export default {
         }
     },
     methods: {
-        handleSubmit(e) {
-            e.preventDefault();
-            if (this.password.length > 0) {
-                axios.get('/sanctum/csrf-cookie').then(response => {
-                    axios.post('api/login', {
-                        email: this.email,
-                        password: this.password
-                    })
-                        .then(response => {
-                            console.log(response.data)
-                            if (response.data.success) {
-                                console.log('success');
-                                this.$router.push('/');
-                            } else {
-                                this.error = response.data.message;
-                            }
-                        })
-                        .catch(function (error) {
-                            console.error(error);
-                        });
-                })
-            }
+        login() {
+            this.userStore.login(this.email, this.password)
         }
     },
-    beforeRouteEnter(to, from, next) {
-        if (window.Laravel.isLoggedin) {
-            return next('/');
-        }
-        next();
-    }
 }
 </script>

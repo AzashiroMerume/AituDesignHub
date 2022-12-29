@@ -11,8 +11,8 @@
                 <div class="col-4 text-center">
                     <form class="d-flex" role="search">
                         <input class="search-input form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="search-btn btn btn-danger border-white" type="submit"><img src="../css/images/search.png"
-                                alt="search" width="25" /></button>
+                        <button class="search-btn btn btn-danger border-white" type="submit"><img
+                                src="../css/images/search.png" alt="search" width="25" /></button>
                     </form>
                 </div>
                 <div class="col-4 text-end">
