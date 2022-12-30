@@ -15,7 +15,10 @@
                                 src="../css/images/search.png" alt="search" width="25" /></button>
                     </form>
                 </div>
-                <div class="col-4 text-end">
+                <div class="col-4 text-end" v-if="userStore.isAuthenticated">
+                    <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
+                </div>
+                <div class="col-4 text-end" v-else="userStore.isAuthenticated">
                     <router-link to="/login" class="btn me-3 text-white">Log in</router-link>
                     <router-link to="/register" class="btn special-btn text-white">Sign in</router-link>
                 </div>
@@ -62,3 +65,23 @@
         </div>
     </div>
 </template>
+<script>
+import { useUserStore } from './stores/UserStore'
+
+export default {
+    setup() {
+        const userStore = useUserStore()
+
+        return { userStore }
+    },
+    created() {
+        this.userStore.authenticated = window.authUser.authenticated
+        this.userStore.user = window.authUser.user
+    },
+    methods: {
+        logout() {
+            this.userStore.logout()
+        }
+    }
+}
+</script>

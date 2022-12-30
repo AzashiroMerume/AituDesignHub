@@ -22,19 +22,19 @@
 @if (Auth::check())
     @php
     $user_auth_data = [
-        'isLoggedin' => true,
+        'authenticated' => true,
         'user' =>  Auth::user()
     ];
     @endphp
 @else
     @php
     $user_auth_data = [
-        'isLoggedin' => false
+        'authenticated' => false
     ];
     @endphp
 @endif
 <script>
-    window.Laravel = JSON.parse(atob('{{ base64_encode(json_encode($user_auth_data)) }}'));
+    window.authUser = JSON.parse(atob('{{ base64_encode(json_encode($user_auth_data)) }}'));
 </script>
     <div id="app"></div>
 

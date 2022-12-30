@@ -5,12 +5,13 @@ export const useUserStore = defineStore('user', {
     state: () => {
         return {
             authenticated: false,
-            user_id: null,
-            token: null,
+            user: null,
         }
     },
     getters: {
-
+        isAuthenticated(state) {
+            return state.authenticated;
+        }
     },
     actions: {
         async login(email, password) {
@@ -22,10 +23,11 @@ export const useUserStore = defineStore('user', {
                     })
                         .then(response => {
                             console.log(response)
+                            this.authenticated = true;
                             if (response.data.success) {
                                 console.log('success')
                             } else {
-                                let error = response.data.message
+                                console.log(response.data.message)
                             }
                         })
                         .catch(function (error) {
@@ -46,10 +48,11 @@ export const useUserStore = defineStore('user', {
                     })
                         .then(response => {
                             console.log(response)
+                            this.authenticated = true
                             if (response.data.success) {
                                 console.log('success')
                             } else {
-                                let error = response.data.message
+                                console.log(response.data.message)
                             }
                         })
                         .catch(function (error) {
@@ -57,6 +60,22 @@ export const useUserStore = defineStore('user', {
                         })
                 })
             }
+        },
+        async logout() {
+            axios.get('/sacntum/csrf-cookie').then(response => {
+                axios.post('api/logout')
+                    .then(response => {
+                        if (response.data.success) {
+                            this.authenticated = false
+                            console.log('logged out');
+                        } else {
+                            console.log('response');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    })
+            })
         }
     }
 })
