@@ -3,8 +3,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <div class="alert alert-danger" role="alert" v-if="error !== null">
-                    {{ error }}
+                <div class="alert alert-danger" role="alert" v-if="userStore.error !== null">
+                    {{ userStore.error }}
                 </div>
 
                 <div class="shadow-sm py-3 px-5 border">
@@ -40,7 +40,6 @@ export default {
         return {
             email: "",
             password: "",
-            error: null
         }
     },
     methods: {

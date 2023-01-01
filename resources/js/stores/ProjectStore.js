@@ -8,6 +8,9 @@ export const useProjectStore = defineStore('project', {
         };
     },
     getters: {
+        allProjects(state) {
+            return state.projects
+        }
     },
     actions: {
         async getProjects() {

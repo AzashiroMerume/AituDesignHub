@@ -33,7 +33,7 @@ export default {
     },
     computed: {
         projects() {
-            return this.projectStore.projects;
+            return this.projectStore.allProjects;
         }
     },
     components: {

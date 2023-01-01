@@ -6,11 +6,15 @@ export const useUserStore = defineStore('user', {
         return {
             authenticated: false,
             user: null,
+            error: null,
         }
     },
     getters: {
         isAuthenticated(state) {
             return state.authenticated;
+        },
+        allErrors(state) {
+            return state.error;
         }
     },
     actions: {
@@ -23,11 +27,12 @@ export const useUserStore = defineStore('user', {
                     })
                         .then(response => {
                             console.log(response)
-                            this.authenticated = true;
                             if (response.data.success) {
                                 console.log('success')
+                                this.authenticated = true;
                             } else {
                                 console.log(response.data.message)
+                                this.error = response.data.message
                             }
                         })
                         .catch(function (error) {
@@ -48,11 +53,12 @@ export const useUserStore = defineStore('user', {
                     })
                         .then(response => {
                             console.log(response)
-                            this.authenticated = true
                             if (response.data.success) {
                                 console.log('success')
+                                this.authenticated = true
                             } else {
                                 console.log(response.data.message)
+                                this.error = response.data.message
                             }
                         })
                         .catch(function (error) {
@@ -67,6 +73,7 @@ export const useUserStore = defineStore('user', {
                     .then(response => {
                         if (response.data.success) {
                             this.authenticated = false
+                            this.error = null
                             console.log('logged out');
                         } else {
                             console.log('response');
