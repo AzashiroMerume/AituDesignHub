@@ -23,7 +23,7 @@
 <script>
 
 export default {
-    name: 'ProjectBlock',
+    name: 'ProjectsBlock',
     data() {
         return {
 

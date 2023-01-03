@@ -7,14 +7,15 @@ export const useUserStore = defineStore('user', {
             authenticated: false,
             user: null,
             error: null,
+            validationErrors: null,
         }
     },
     getters: {
         isAuthenticated(state) {
-            return state.authenticated;
+            return state.authenticated
         },
         allErrors(state) {
-            return state.error;
+            return state.error
         }
     },
     actions: {
@@ -35,8 +36,10 @@ export const useUserStore = defineStore('user', {
                                 this.error = response.data.message
                             }
                         })
-                        .catch(function (error) {
-                            console.error(error)
+                        .catch(error => {
+                            if (error.response.status == 422) {
+                                this.validationErrors = error.response.data.errors
+                            }
                         })
                 })
             }
@@ -61,8 +64,11 @@ export const useUserStore = defineStore('user', {
                                 this.error = response.data.message
                             }
                         })
-                        .catch(function (error) {
-                            console.error(error)
+                        .catch(error => {
+                            if (error.response.status == 422) {
+                                console.log(error.response)
+                                this.validationErrors = error.response.data.errors
+                            }
                         })
                 })
             }
@@ -74,9 +80,9 @@ export const useUserStore = defineStore('user', {
                         if (response.data.success) {
                             this.authenticated = false
                             this.error = null
-                            console.log('logged out');
+                            console.log(response.data.message)
                         } else {
-                            console.log('response');
+                            console.log('response')
                         }
                     })
                     .catch(function (error) {

@@ -16,27 +16,39 @@ class UserController extends Controller
         if (Auth::check()) {
             $response = [
                 'success' => false,
-                'message' => 'This email is already used!',
+                'message' => 'You are already logged! Pls log out first',
             ];
         } else {
-            try {
-                $user = new User();
-                $user->nickname = $request->nickname;
-                $user->email = $request->email;
-                $user->firstname = $request->firstname;
-                $user->surname = $request->surname;
-                $user->password = Hash::make($request->password);
-                $user->save();
+            $attr = $request->validate([
+                'nickname' => 'required|string|max:13',
+                'email' => 'required|string|email|unique:users',
+                'firstname' => 'string|max:255',
+                'surname' => 'string|max:255',
+                'password' => 'required|string|min:6'
+            ]);
+
+            $email = User::where('email', $request->email)->first();
+
+            if (!$email) {
+                $user = User::create([
+                    'nickname' => $attr['nickname'],
+                    'email' => $attr['email'],
+                    'firstname' => $attr['firstname'],
+                    'surname' => $attr['surname'],
+                    'password' => bcrypt($attr['password']),
+                ]);
+
                 $success = true;
                 $message = 'User created successfully';
+
                 $credentials = [
                     'email' => $request->email,
                     'password' => $request->password,
                 ];
                 Auth::attempt($credentials);
-            } catch (\Illuminate\Database\QueryException $ex) {
+            } else {
                 $success = false;
-                $message = $ex->getMessage();
+                $message = 'This email already used! Try to login instead';
             }
 
             $response = [
@@ -53,7 +65,7 @@ class UserController extends Controller
         if (Auth::check()) {
             $response = [
                 'success' => false,
-                'message' => 'Already logged!',
+                'message' => 'Already logged! Try to log out first',
             ];
         } else {
             $credentials = [
@@ -81,20 +93,27 @@ class UserController extends Controller
 
     public function logout()
     {
-        try {
-            Session::flush();
-            $success = true;
-            $message = 'Successfully logged out';
-        } catch (\Illuminate\Database\QueryException $ex) {
-            $success = false;
-            $message = $ex->getMessage();
-        }
+        if (Auth::check()) {
+            try {
+                Session::flush();
+                $success = true;
+                $message = 'Successfully logged out';
+            } catch (\Illuminate\Database\QueryException $ex) {
+                $success = false;
+                $message = $ex->getMessage();
+            }
 
-        // response
-        $response = [
-            'success' => $success,
-            'message' => $message,
-        ];
+            // response
+            $response = [
+                'success' => $success,
+                'message' => $message,
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Have not logged yet!',
+            ];
+        }
 
         return response()->json($response);
     }
