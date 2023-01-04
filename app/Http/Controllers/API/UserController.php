@@ -20,36 +20,29 @@ class UserController extends Controller
             ];
         } else {
             $attr = $request->validate([
-                'nickname' => 'required|string|max:13',
+                'nickname' => 'required|string|unique:users|max:13',
                 'email' => 'required|string|email|unique:users',
                 'firstname' => 'string|max:255',
                 'surname' => 'string|max:255',
                 'password' => 'required|string|min:6'
             ]);
 
-            $email = User::where('email', $request->email)->first();
+            $user = User::create([
+                'nickname' => $attr['nickname'],
+                'email' => $attr['email'],
+                'firstname' => $attr['firstname'],
+                'surname' => $attr['surname'],
+                'password' => bcrypt($attr['password']),
+            ]);
 
-            if (!$email) {
-                $user = User::create([
-                    'nickname' => $attr['nickname'],
-                    'email' => $attr['email'],
-                    'firstname' => $attr['firstname'],
-                    'surname' => $attr['surname'],
-                    'password' => bcrypt($attr['password']),
-                ]);
+            $success = true;
+            $message = 'User created successfully';
 
-                $success = true;
-                $message = 'User created successfully';
-
-                $credentials = [
-                    'email' => $request->email,
-                    'password' => $request->password,
-                ];
-                Auth::attempt($credentials);
-            } else {
-                $success = false;
-                $message = 'This email already used! Try to login instead';
-            }
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password,
+            ];
+            Auth::attempt($credentials);
 
             $response = [
                 'success' => $success,
@@ -68,6 +61,11 @@ class UserController extends Controller
                 'message' => 'Already logged! Try to log out first',
             ];
         } else {
+            $attr = $request->validate([
+                'email' => 'required|string|email|',
+                'password' => 'required|string|min:6'
+            ]);
+
             $credentials = [
                 'email' => $request->email,
                 'password' => $request->password,

@@ -1,27 +1,24 @@
 <template>
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            <li v-for="(value) in validationErrors">{{ value }}</li>
-        </ul>
+    <div v-for="error_arr in errors">
+        <div class="alert alert-danger alert-dismissible m-1" role="alert"
+            v-for="error in error_arr">
+            <span>{{ error }}</span>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: 'ValidationErrors',
-    data() {
-        return {
+    // data() {
+    //     return {
 
-        }
-    },
-    props: {
-        errors: Array
-    },
+    //     }
+    // },
+    props: ['errors'],
     computed: {
         validationErrors() {
-            let errors = Object.values(this.errors)
-            errors.flat();
-            return errors;
+            console.log(this.errors)
         }
     }
 }

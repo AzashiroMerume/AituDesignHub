@@ -6,7 +6,8 @@
                 <div class="alert alert-danger" role="alert" v-if="userStore.error !== null">
                     {{ userStore.error }}
                 </div>
-                <validation-errors :errors="userStore.validationErrors"></validation-errors>
+                <validation-errors v-if="userStore.validationErrors"
+                    :errors="userStore.validationErrors"></validation-errors>
 
                 <div class="shadow-sm py-3 px-5 border">
                     <div class="border-bottom">
@@ -40,7 +41,7 @@
 </template>
 
 <script>
-import ValidationErrors from '../components/ValidationErrors.vue'
+import ValidationErrors from '@/components/ValidationErrors.vue'
 import { useUserStore } from '../stores/UserStore'
 
 export default {
@@ -64,5 +65,8 @@ export default {
             this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
         }
     },
+    components: {
+        ValidationErrors
+    }
 }
 </script>

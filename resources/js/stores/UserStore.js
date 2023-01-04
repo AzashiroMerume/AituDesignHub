@@ -20,58 +20,59 @@ export const useUserStore = defineStore('user', {
     },
     actions: {
         async login(email, password) {
-            if (password.length > 0) {
-                axios.get('/sanctum/csrf-cookie').then(response => {
-                    axios.post('api/login', {
-                        email: email,
-                        password: password
-                    })
-                        .then(response => {
-                            console.log(response)
-                            if (response.data.success) {
-                                console.log('success')
-                                this.authenticated = true;
-                            } else {
-                                console.log(response.data.message)
-                                this.error = response.data.message
-                            }
-                        })
-                        .catch(error => {
-                            if (error.response.status == 422) {
-                                this.validationErrors = error.response.data.errors
-                            }
-                        })
+            axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.post('api/login', {
+                    email: email,
+                    password: password
                 })
-            }
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.success) {
+                            console.log('success')
+                            this.authenticated = true;
+                            this.error = null
+                            this.validationErrors = null
+                        } else {
+                            console.log(response.data.message)
+                            this.error = response.data.message
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            this.validationErrors = error.response.data.errors
+                        }
+                    })
+            })
         },
         async register(nickname, firstname, surname, email, password) {
-            if (password.length > 0) {
-                axios.get('/sanctum/csrf-cookie').then(response => {
-                    axios.post('api/register', {
-                        nickname: nickname,
-                        firstname: firstname,
-                        surname: surname,
-                        email: email,
-                        password: password
-                    })
-                        .then(response => {
-                            console.log(response)
-                            if (response.data.success) {
-                                console.log('success')
-                                this.authenticated = true
-                            } else {
-                                console.log(response.data.message)
-                                this.error = response.data.message
-                            }
-                        })
-                        .catch(error => {
-                            if (error.response.status == 422) {
-                                console.log(error.response)
-                                this.validationErrors = error.response.data.errors
-                            }
-                        })
+            axios.get('/sanctum/csrf-cookie').then(response => {
+                axios.post('api/register', {
+                    nickname: nickname,
+                    firstname: firstname,
+                    surname: surname,
+                    email: email,
+                    password: password
                 })
-            }
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.success) {
+                            console.log('success')
+                            this.authenticated = true
+                            this.error = null
+                            this.validationErrors = null
+                        } else {
+                            console.log(response.data.message)
+                            this.error = response.data.message
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            console.log(error.response)
+                            this.validationErrors = error.response.data.errors
+                        }
+                    })
+            })
+
         },
         async logout() {
             axios.get('/sacntum/csrf-cookie').then(response => {
