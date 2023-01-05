@@ -1,0 +1,64 @@
+<template>
+    <div class="container huge-m text-white special-font-2">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="alert alert-danger" role="alert" v-if="projectStore.validationErrors !== null">
+                    {{ projectStore.validationErrors }}
+                </div>
+                <validation-errors v-if="projectStore.validationErrors"
+                    :errors="projectStore.validationErrors"></validation-errors>
+
+                <div class="shadow-sm py-3 px-5 border">
+                    <div class="border-bottom">
+                        <h3 class="h3 special-font-1">Create Project</h3>
+                    </div>
+                    <div class="my-4">
+                        <label for="name" class="form-label h5">Project Name</label>
+                        <input type="text" class="form-control form-control-sm" v-model="name">
+                    </div>
+                    <div class="my-4">
+                        <label for="description" class="form-label h5">Project Description</label>
+                        <input type="text" class="form-control form-control-sm" v-model="description">
+                    </div>
+                    <div class="my-4">
+                        <label for="preview_img" class="form-label h5">Preview Image</label>
+                        <input type="text" class="form-control form-control-sm" v-model="preview_img">
+                    </div>
+                    <button type="submit" @click.prevent="create" class="btn btn-danger">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import ValidationErrors from '@/components/ValidationErrors.vue'
+import { useProjectStore } from '../stores/ProjectStore'
+
+
+export default {
+    name: "CreateProject",
+    setup() {
+        const projectStore = useProjectStore()
+
+        return { projectStore }
+    },
+    data() {
+        return {
+            name: '',
+            description: '',
+            preview_img: '',
+        }
+    },
+    methods: {
+        create() {
+            this.projectStore.createProject(this.name, this.description, this.preview_img)
+        }
+    },
+    components: {
+        ValidationErrors
+    }
+
+}
+</script>

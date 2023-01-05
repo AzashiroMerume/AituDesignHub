@@ -16,7 +16,10 @@
                     </form>
                 </div>
                 <div class="col-4 text-end" v-if="userStore.isAuthenticated">
-                    <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
+                    <router-link to="/myprojects" class="text-decoration-none me-5 text-white">{{
+                        userStore.getUser.nickname
+                    }}</router-link>
+                    <a class="btn btn-danger me-5 text-white" style="cursor: pointer;" @click="logout">Logout</a>
                 </div>
                 <div class="col-4 text-end" v-else="userStore.isAuthenticated">
                     <router-link to="/login" class="btn me-3 text-white">Log in</router-link>
@@ -74,9 +77,10 @@ export default {
 
         return { userStore }
     },
-    created() {
+    mounted() {
         this.userStore.authenticated = window.authUser.authenticated
         this.userStore.user = window.authUser.user
+        console.log(this.userStore.user)
     },
     methods: {
         logout() {

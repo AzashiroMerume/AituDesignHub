@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
+use App\Models\User;
 
 class Project extends Model
 {
@@ -17,6 +18,19 @@ class Project extends Model
      * $this->attributes['created_at'] - timestamp - contains the project creation date
      * $this->attributes['updated_at'] - timestamp - contains the project update date
      */
+    protected $fillable = [
+        'name',
+        'description',
+        'preview_img',
+    ];
 
 
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
