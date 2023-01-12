@@ -1,9 +1,9 @@
 <template>
-    <div class="home p-4 text-white">
+    <div class="home p-4 text-dark">
         <div class="home-heading">
             <div class="row align-items-center">
                 <div class="col-8">
-                    <h3 class="display-6 text-white">My projects</h3>
+                    <h3 class="display-6 text-dark">My projects</h3>
                 </div>
                 <div class="col-4">
                     <router-link to="/create" class="btn btn-success">Create Project</router-link>

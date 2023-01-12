@@ -1,25 +1,10 @@
 body {
-    background: hsla(225, 78%, 59%, 1);
+    background-color: #fff;
+    color: dark;
+}
 
-    background: linear-gradient(
-        90deg,
-        hsla(225, 78%, 59%, 1) 0%,
-        hsla(197, 85%, 51%, 1) 100%
-    );
-
-    background: -moz-linear-gradient(
-        90deg,
-        hsla(225, 78%, 59%, 1) 0%,
-        hsla(197, 85%, 51%, 1) 100%
-    );
-
-    background: -webkit-linear-gradient(
-        90deg,
-        hsla(225, 78%, 59%, 1) 0%,
-        hsla(197, 85%, 51%, 1) 100%
-    );
-
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#456FE8", endColorstr="#19B0EC", GradientType=1 );
+a {
+    color: red;
 }
 
 header {
@@ -41,21 +26,16 @@ header {
 
 .logo {
     font-family: "Sora", sans-serif;
-    color: white;
     margin: 0px !important;
 }
 
 .search-input {
     border-radius: 20px 0px 0px 20px;
-    border: 1px solid #fff;
-    background-color: transparent !important;
     color: #fff !important;
 }
 
 .search-btn {
     border-radius: 0px 20px 20px 0px;
-    background: transparent;
-    color: white;
 }
 
 .vertical-menu {
@@ -65,18 +45,17 @@ header {
 .top-menu {
     font-weight: 500;
     font-size: 16px;
-    border-bottom: 1px solid #fff;
     padding: 10px 30px;
 }
 
 .subscriptions {
     padding: 20px 40px;
     height: 400px;
-    border-bottom: 1px solid #fff;
 }
 
 #home-category {
-    margin-top: 15px;
+    margin: 25px 0px;
+    padding: 7px;
 }
 
 .card {

@@ -1,5 +1,5 @@
 <template>
-    <div class="container huge-m text-white special-font-2">
+    <div class="container huge-m text-dark special-font-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
 

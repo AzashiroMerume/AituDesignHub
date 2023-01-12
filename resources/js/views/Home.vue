@@ -1,7 +1,7 @@
 <template>
     <div class="home p-4">
         <div class="home-heading">
-            <h3 class="display-6 text-white">Popular projects</h3>
+            <h3 class="display-6">Popular projects</h3>
             <div class="home-category">
                 <select name="category" class="text-decoration-none" id="home-category">
                     <option value="popular" selected>By popularity</option>
