@@ -38,20 +38,35 @@ class ProjectController extends Controller
 
             $success = true;
             $message = 'Project created successfully';
-
-            $response = [
-                'success' => $success,
-                'message' => $message,
-            ];
         } else {
             $success = false;
             $message = 'You are not logged yet';
-
-            $response = [
-                'success' => $success,
-                'message' => $message,
-            ];
         }
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
+    }
+
+    public function deleteProject(Request $request)
+    {
+        $id = $request->id;
+        if (Auth::check()) {
+            Project::destroy($id);
+            $success = true;
+            $message = 'Project created successfully';
+        } else {
+            $success = false;
+            $message = 'Log in first';
+        }
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
 
         return response()->json($response);
     }

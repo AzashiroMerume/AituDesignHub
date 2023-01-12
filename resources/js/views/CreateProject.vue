@@ -11,7 +11,8 @@
 
                 <div class="shadow-sm py-3 px-5 border">
                     <div class="border-bottom">
-                        <h3 class="h3 special-font-1">Create Project</h3>
+                        <!-- <h3 class="h3 special-font-1" v-if="this.$router.params.id">Edit Project</h3> -->
+                        <h3 class="h3 special-font-1">Update Project</h3>
                     </div>
                     <div class="my-4">
                         <label for="name" class="form-label h5">Project Name</label>

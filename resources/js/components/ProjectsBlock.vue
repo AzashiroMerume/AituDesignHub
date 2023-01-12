@@ -9,10 +9,12 @@
                         <p class="card-text">{{ project.description }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                <button type="button" class="btn btn-sm btn-success">View</button>
+                                <router-link :to="{ name: 'CreateProject'}" type="button"
+                                    class="btn text-white btn-sm btn-warning">Edit</router-link>
+                                <button type="submit" @click.prevent="deleteOne(project._id)"
+                                    class="btn btn-sm btn-danger">Delete</button>
                             </div>
-                            <small class="text-muted">{{ project.updated_at }}</small>
                         </div>
                     </div>
                 </div>
@@ -21,12 +23,23 @@
     </div>
 </template>
 <script>
+import { useProjectStore } from '../stores/ProjectStore'
 
 export default {
     name: 'ProjectsBlock',
+    setup() {
+        const projectStore = useProjectStore()
+
+        return { projectStore }
+    },
     data() {
         return {
 
+        }
+    },
+    methods: {
+        deleteOne(id) {
+            this.projectStore.deleteProject(id)
         }
     },
     props: {

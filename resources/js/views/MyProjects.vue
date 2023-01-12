@@ -1,5 +1,5 @@
 <template>
-    <div class="home p-4">
+    <div class="home p-4 text-white">
         <div class="home-heading">
             <div class="row align-items-center">
                 <div class="col-8">

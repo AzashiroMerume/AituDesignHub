@@ -61,8 +61,12 @@ export default {
         }
     },
     methods: {
-        register() {
-            this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
+        async register() {
+            try {
+                await this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
     components: {

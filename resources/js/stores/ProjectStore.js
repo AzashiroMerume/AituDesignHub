@@ -52,6 +52,24 @@ export const useProjectStore = defineStore('project', {
                         console.error(error)
                     })
             })
+        },
+        async deleteProject(id) {
+            axios.get('/sacntum/csrf-cookie').then(response => {
+                axios.post('api/delete', {
+                    id: id
+                })
+                    .then(response => {
+                        console.log(response)
+                        if (response.data.success) {
+                            console.log(response)
+                        } else {
+                            console.log('response')
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(error)
+                    })
+            })
         }
     }
 })

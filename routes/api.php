@@ -18,6 +18,7 @@ use App\Http\Controllers\API\UserController;
 Route::get('/projects', [ProjectController::class, 'getAllProjects']);
 Route::get('/myprojects', [ProjectController::class, 'getAllMyProjects']);
 Route::post('/create', [ProjectController::class, 'createProject']);
+Route::post('/delete', [ProjectController::class, 'deleteProject']);
 
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
