@@ -1,7 +1,6 @@
 <template>
     <div v-for="error_arr in errors">
-        <div class="alert alert-danger alert-dismissible m-1" role="alert"
-            v-for="error in error_arr">
+        <div class="alert alert-danger" role="alert" v-for="error in error_arr">
             <span>{{ error }}</span>
         </div>
     </div>

@@ -54,6 +54,16 @@ export default {
             }
         }
     },
+    watch: {
+        'userStore.isAuthenticated': {
+            immediate: true,
+            async handler() {
+                if (this.userStore.isAuthenticated) {
+                    this.$router.push('/')
+                }
+            }
+        }
+    },
     components: {
         ValidationErrors
     }

@@ -60,12 +60,26 @@ export default {
             password: "",
         }
     },
+    created() {
+        this.userStore.error = null
+        this.userStore.validationErrors = null
+    },
     methods: {
         async register() {
             try {
                 await this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
             } catch (error) {
                 console.log(error)
+            }
+        }
+    },
+    watch: {
+        'userStore.isAuthenticated': {
+            immediate: true,
+            async handler() {
+                if (this.userStore.isAuthenticated) {
+                    this.$router.push('/')
+                }
             }
         }
     },
