@@ -42,11 +42,13 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => $request->password,
             ];
+
             Auth::attempt($credentials);
 
             $response = [
                 'success' => $success,
                 'message' => $message,
+                'user' => Auth::user()
             ];
         }
 
@@ -83,6 +85,7 @@ class UserController extends Controller
             $response = [
                 'success' => $success,
                 'message' => $message,
+                'user' => Auth::user()
             ];
         }
 

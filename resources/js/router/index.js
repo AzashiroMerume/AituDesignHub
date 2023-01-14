@@ -1,6 +1,6 @@
-import { templateSettings } from "lodash"
 import { createRouter, createWebHistory } from "vue-router"
 import { useUserStore } from '@/stores/UserStore'
+import { loadLayoutMiddleware } from "./middlewares/loadLayoutMiddleware"
 import Home from "../views/Home.vue"
 import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
@@ -17,12 +17,18 @@ const routes = [
     {
         path: "/register",
         name: "Register",
-        component: Register
+        component: Register,
+        meta: {
+            layout: 'auth'
+        }
     },
     {
         path: "/login",
         name: "Login",
-        component: Login
+        component: Login,
+        meta: {
+            layout: 'auth'
+        }
     },
     {
         path: "/myprojects",
@@ -40,6 +46,8 @@ const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes,
 })
+
+router.beforeEach(loadLayoutMiddleware)
 
 router.beforeEach((to, from) => {
     const userStore = useUserStore()

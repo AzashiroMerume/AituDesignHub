@@ -9,7 +9,7 @@
                 <validation-errors v-if="userStore.validationErrors"
                     :errors="userStore.validationErrors"></validation-errors>
 
-                <div class="shadow-sm py-3 px-5 border">
+                <div class="shadow-sm py-4 px-5 border">
                     <div class="border-bottom">
                         <h3 class="h3 special-font-1">Login</h3>
                     </div>
@@ -66,6 +66,6 @@ export default {
     },
     components: {
         ValidationErrors
-    }
+    },
 }
 </script>

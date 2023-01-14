@@ -19,23 +19,23 @@
 </head>
 
 <body>
-@if (Auth::check())
-    @php
-    $user_auth_data = [
-        'authenticated' => true,
-        'user' =>  Auth::user()
-    ];
-    @endphp
-@else
-    @php
-    $user_auth_data = [
-        'authenticated' => false
-    ];
-    @endphp
-@endif
-<script>
-    window.authUser = JSON.parse(atob('{{ base64_encode(json_encode($user_auth_data)) }}'));
-</script>
+    @if (Auth::check())
+        @php
+        $user_auth_data = [
+            'authenticated' => true,
+            'user' =>  Auth::user()
+        ];
+        @endphp
+    @else
+        @php
+        $user_auth_data = [
+            'authenticated' => false
+        ];
+        @endphp
+    @endif
+    <script>
+        window.authUser = JSON.parse(atob('{{ base64_encode(json_encode($user_auth_data)) }}'));
+    </script>
     <div id="app"></div>
 
     @vite('resources/js/app.js')

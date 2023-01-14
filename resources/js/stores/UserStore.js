@@ -31,8 +31,9 @@ export const useUserStore = defineStore('user', {
                     .then(response => {
                         console.log(response)
                         if (response.data.success) {
-                            console.log('success')
-                            this.authenticated = true;
+                            console.log('successs')
+                            this.authenticated = true
+                            this.user = response.data.user
                             this.error = null
                             this.validationErrors = null
                         } else {
@@ -61,6 +62,7 @@ export const useUserStore = defineStore('user', {
                         if (response.data.success) {
                             console.log('success')
                             this.authenticated = true
+                            this.user = response.data.user
                             this.error = null
                             this.validationErrors = null
                         } else {
@@ -83,6 +85,7 @@ export const useUserStore = defineStore('user', {
                     .then(response => {
                         if (response.data.success) {
                             this.authenticated = false
+                            this.user = null
                             this.error = null
                             console.log(response.data.message)
                         } else {
