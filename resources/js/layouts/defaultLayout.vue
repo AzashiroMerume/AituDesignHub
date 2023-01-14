@@ -62,7 +62,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-10 py-5 special-font-1">
+                <div class="col-10 py-2 special-font-1">
                     <router-view />
                 </div>
             </div>
@@ -82,7 +82,7 @@ export default {
     },
     data() {
         return {
-            display: false
+            display: true
         }
     },
     methods: {
