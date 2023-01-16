@@ -2,7 +2,7 @@
     <header class="shadow-sm">
         <div class="header-wrap container-fluid">
             <div class="row justify-content-center align-items-center">
-                <div class="col-4 d-flex justify-content-start align-items-center">
+                <div class="col-4 d-flex align-items-center">
                     <img src="../../css/images/menu.png" @click="alterVerticalMenuVisibility" alt="menu" class="me-3"
                         width="25" />
                     <h6 class="logo">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-4 text-end" v-else="userStore.authenticated">
                     <router-link to="/login" class="btn me-3 ">Log in</router-link>
-                    <router-link to="/register" class="btn special-btn ">Sign in</router-link>
+                    <router-link to="/register" class="btn special-btn ">Sign up</router-link>
                 </div>
             </div>
         </div>

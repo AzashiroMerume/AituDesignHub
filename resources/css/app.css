@@ -1,6 +1,9 @@
+html {
+    height: 100%;
+}
+
 body {
-    background-color: #fff;
-    color: dark;
+    min-height: 100%;
 }
 
 a {
@@ -61,6 +64,10 @@ header {
 .card {
     background-color: transparent;
     border-color: white;
+}
+
+.auth-form {
+    width: 600px;
 }
 
 .huge-m {

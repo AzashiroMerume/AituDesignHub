@@ -51,6 +51,9 @@ router.beforeEach(loadLayoutMiddleware)
 
 router.beforeEach((to, from) => {
     const userStore = useUserStore()
+
+    userStore.validationErrors = null
+
     if ((to.name == 'Login' || to.name == 'Register') && userStore.isAuthenticated) {
         return { name: 'Home' }
     }

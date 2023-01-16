@@ -36,7 +36,7 @@
     <script>
         window.authUser = JSON.parse(atob('{{ base64_encode(json_encode($user_auth_data)) }}'));
     </script>
-    <div id="app"></div>
+    <div id="app" class="h-100"></div>
 
     @vite('resources/js/app.js')
 </body>

@@ -2,13 +2,6 @@
     <div class="container huge-m text-dark special-font-2">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
-                <div class="alert alert-danger" role="alert" v-if="projectStore.validationErrors !== null">
-                    {{ projectStore.validationErrors }}
-                </div>
-                <validation-errors v-if="projectStore.validationErrors"
-                    :errors="projectStore.validationErrors"></validation-errors>
-
                 <div class="shadow-sm py-3 px-5 border">
                     <div class="border-bottom">
                         <!-- <h3 class="h3 special-font-1" v-if="this.$router.params.id">Edit Project</h3> -->
@@ -34,7 +27,6 @@
 </template>
 
 <script>
-import ValidationErrors from '@/components/ValidationErrors.vue'
 import { useProjectStore } from '../stores/ProjectStore'
 
 
@@ -57,9 +49,6 @@ export default {
             this.projectStore.createProject(this.name, this.description, this.preview_img)
         }
     },
-    components: {
-        ValidationErrors
-    }
 
 }
 </script>
