@@ -19,22 +19,31 @@
 <script>
 import ProjectsBlock from '../components/ProjectsBlock.vue'
 import { useProjectStore } from '../stores/ProjectStore'
+import { useUserStore } from '../stores/UserStore'
 
 export default {
     name: "MyProjects",
     setup() {
         const projectStore = useProjectStore()
-        projectStore.getMyProjects();
-        return { projectStore }
-    },
-    data() {
-        return {
+        const userStore = useUserStore()
 
-        }
+        projectStore.getMyProjects();
+
+        return { projectStore, userStore }
     },
     computed: {
         myprojects() {
             return this.projectStore.allProjects;
+        }
+    },
+    watch: {
+        'userStore.isAuthenticated': {
+            immediate: true,
+            async handler() {
+                if (!this.userStore.isAuthenticated) {
+                    this.$router.push('/login')
+                }
+            }
         }
     },
     components: {

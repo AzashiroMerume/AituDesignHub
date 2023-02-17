@@ -9,12 +9,10 @@
                         <router-link to="/" class="text-decoration-none fw-bold text-dark">AituDesignHub</router-link>
                     </h6>
                 </div>
-                <div class="col-4 text-center">
-                    <form class="d-flex" role="search">
-                        <input class="search-input form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button class="search-btn btn btn-danger border-white" type="submit"><img
-                                src="../../css/images/search.png" alt="search" width="25" /></button>
-                    </form>
+                <div class="col-4 d-flex text-center">
+                    <input class="search-input form-control" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn btn btn-danger border-white" type="submit"><img
+                            src="../../css/images/search.png" alt="search" width="25" /></button>
                 </div>
                 <div class="col-4 text-end" v-if="userStore.isAuthenticated">
                     <router-link to="/myprojects" class="text-decoration-none me-5">{{

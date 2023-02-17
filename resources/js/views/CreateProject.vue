@@ -17,7 +17,7 @@
                     </div>
                     <div class="my-4">
                         <label for="preview_img" class="form-label h5">Preview Image</label>
-                        <input type="text" class="form-control form-control-sm" v-model="preview_img">
+                        <input type="file" class="form-control form-control-sm" :on-change="onFileChange">
                     </div>
                     <button type="submit" @click.prevent="create" class="btn btn-danger">Create</button>
                 </div>
@@ -28,14 +28,17 @@
 
 <script>
 import { useProjectStore } from '../stores/ProjectStore'
-
+import { useUserStore } from '../stores/UserStore'
 
 export default {
     name: "CreateProject",
     setup() {
         const projectStore = useProjectStore()
+        const userStore = useUserStore()
 
-        return { projectStore }
+        projectStore.getMyProjects();
+
+        return { projectStore, userStore }
     },
     data() {
         return {
@@ -47,6 +50,19 @@ export default {
     methods: {
         create() {
             this.projectStore.createProject(this.name, this.description, this.preview_img)
+        },
+        onFileChange(e) {
+            this.preview_img = e.target.files[0];
+        },
+    },
+    watch: {
+        'userStore.isAuthenticated': {
+            immediate: true,
+            async handler() {
+                if (!this.userStore.isAuthenticated) {
+                    this.$router.push('/login')
+                }
+            }
         }
     },
 

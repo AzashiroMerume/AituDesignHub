@@ -35,11 +35,17 @@ export const useProjectStore = defineStore('project', {
             }
         },
         async createProject(name, description, preview_img) {
+            let formData = new FormData()
+            formData.append('preview', this.preview_img)
             axios.get('/sacntum/csrf-cookie').then(response => {
                 axios.post('api/create', {
                     name: name,
                     description: description,
-                    preview_img: preview_img,
+                    preview: formData,
+                }, {
+                    headers: {
+                        'content-type': 'multipart/form-data',
+                    }
                 })
                     .then(response => {
                         if (response.data.success) {

@@ -56,6 +56,8 @@ router.beforeEach((to, from) => {
 
     if ((to.name == 'Login' || to.name == 'Register') && userStore.isAuthenticated) {
         return { name: 'Home' }
+    } else if ((to.name == 'MyProjects' || to.name == 'CreateProject') && !userStore.isAuthenticated) {
+        return { name: 'Login' }
     }
 })
 

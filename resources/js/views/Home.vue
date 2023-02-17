@@ -9,6 +9,7 @@
                     <option value="popular" selected>By likes</option>
                 </select>
             </div>
+            <hr class="feature-divider">
         </div>
         <div class="home-body">
             <projects-block :projects="projects"></projects-block>
