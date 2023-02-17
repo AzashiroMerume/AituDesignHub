@@ -15,14 +15,16 @@
                     </div>
                     <div class="my-5">
                         <label for="email" class="form-label h5">Email</label>
-                        <div class="alert alert-danger" v-if="userStore.validationErrors" role="alert">
+                        <div class="alert alert-danger"
+                            v-if="userStore.validationErrors && userStore.validationErrors.email" role="alert">
                             {{ userStore.validationErrors.email.toString() }}
                         </div>
                         <input type="email" class="form-control form-control-sm" v-model="email">
                     </div>
                     <div class="my-5">
                         <label for="password" class="form-label h5">Password</label>
-                        <div class="alert alert-danger" v-if="userStore.validationErrors" role="alert">
+                        <div class="alert alert-danger"
+                            v-if="userStore.validationErrors && userStore.validationErrors.password" role="alert">
                             {{ userStore.validationErrors.password.toString() }}
                         </div>
                         <input type="password" class="form-control form-control-sm" v-model="password">
