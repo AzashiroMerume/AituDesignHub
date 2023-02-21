@@ -3,7 +3,7 @@
         <div class="row p-4">
             <div class="col-md-4" v-for="project in projects">
                 <div class="card mb-4">
-                    <img class="card-img-top" src="" alt="content">
+                    <img class="card-img-top" src="{{ project.preview }}.jpg" alt="content">
                     <div class="card-body">
                         <h4>{{ project.name }}</h4>
                         <p class="card-text">{{ project.description }}</p>
