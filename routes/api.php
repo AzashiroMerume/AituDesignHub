@@ -16,10 +16,13 @@ use App\Http\Controllers\API\UserController;
 */
 
 Route::get('/projects', [ProjectController::class, 'getAllProjects']);
-Route::get('/myprojects', [ProjectController::class, 'getAllMyProjects']);
-Route::post('/create', [ProjectController::class, 'createProject']);
-Route::post('/delete', [ProjectController::class, 'deleteProject']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/myprojects', [ProjectController::class, 'getAllMyProjects']);
+    Route::post('/create', [ProjectController::class, 'createProject']);
+    Route::post('/delete', [ProjectController::class, 'deleteProject']);
+    Route::post('/logout', [UserController::class, 'logout']);
+});
 
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');

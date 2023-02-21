@@ -79,10 +79,6 @@ export default {
             password: "",
         }
     },
-    created() {
-        this.userStore.error = null
-        this.userStore.validationErrors = null
-    },
     methods: {
         async register() {
             try {

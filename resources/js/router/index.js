@@ -53,6 +53,7 @@ router.beforeEach((to, from) => {
     const userStore = useUserStore()
 
     userStore.validationErrors = null
+    userStore.error = null
 
     if ((to.name == 'Login' || to.name == 'Register') && userStore.isAuthenticated) {
         return { name: 'Home' }
