@@ -27,12 +27,12 @@ class ProjectController extends Controller
             $attr = $request->validate([
                 'name' => 'required|string|max:255',
                 'description' => 'required|string|max:1000',
-                'preview' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
+                'preview' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
             ]);
 
-            $generated_new_name = time() . '.' . $attr['preview']->getClientOriginalExtension();
-            $request->preview->move(public_path('preview_images'), $generated_new_name);
-
+            //create proper handling 422 errors in vue store
+            $generated_new_name = $request->preview->hashName();
+            $path = $request->preview->storeAs('previews', $generated_new_name);
             $project = Project::create([
                 'name' => $attr['name'],
                 'description' => $attr['description'],
