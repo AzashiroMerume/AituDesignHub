@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="home-body">
-            <projects-block :projects="myprojects"></projects-block>
+            <projects-block :projects="myprojects" :isMineProjects="true"></projects-block>
         </div>
     </div>
 </template>

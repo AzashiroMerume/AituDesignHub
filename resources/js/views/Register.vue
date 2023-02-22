@@ -81,11 +81,7 @@ export default {
     },
     methods: {
         async register() {
-            try {
-                await this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
-            } catch (error) {
-                console.log(error)
-            }
+            await this.userStore.register(this.nickname, this.firstname, this.surname, this.email, this.password)
         }
     },
     watch: {

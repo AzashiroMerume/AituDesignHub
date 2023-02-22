@@ -58,6 +58,60 @@ class ProjectController extends Controller
         return response()->json($response);
     }
 
+    public function editProject(Request $request)
+    {
+        $attr = $request->validate([
+            'project_id' => 'required|string',
+            'owner_id' => 'required|string',
+            'name' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:1000',
+            'preview' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg',
+        ]);
+
+        $project = Project::find($attr['project_id']);
+        if (!$project) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Project not found',
+            ]);
+        }
+
+        if ($project->owner_id != Auth::user()->_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You are not authorized to edit this project',
+            ]);
+        }
+
+        $previewUrl = $project->preview_url;
+        $previewName = $project->preview_name;
+
+        if ($request->hasFile('preview')) {
+            $old_preview = $previewName;
+            Storage::disk('public')->delete($old_preview);
+            $generatedNewName = $request->preview->hashName();
+            $path = $request->preview->storeAs('previews', $generatedNewName, 'public');
+            $previewUrl = url('/storage/' . $path);
+            $previewName = $path;
+        }
+
+        $project->name = isset($attr['name']) ? $attr['name'] : $project->name;
+        $project->description = isset($attr['description']) ? $attr['description'] : $project->description;
+        $project->preview_url = $previewUrl;
+        $project->preview_name = $previewName;
+        $project->save();
+
+        $success = true;
+        $message = 'Project updated successfully';
+
+        $response = [
+            'success' => $success,
+            'message' => $message,
+        ];
+
+        return response()->json($response);
+    }
+
     public function deleteProject(Request $request)
     {
         $id = $request->id;

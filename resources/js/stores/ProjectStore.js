@@ -54,7 +54,7 @@ export const useProjectStore = defineStore('project', {
                             this.validationErrors = null
                         } else {
                             console.log(response.data.message)
-                            this.error = response.data.message
+                            this.errors = response.data.message
                         }
                     })
                     .catch(error => {
@@ -63,6 +63,36 @@ export const useProjectStore = defineStore('project', {
                         }
                     })
             })
+        },
+        async editProject(project_id, owner_id, name, description, preview) {
+            let formData = new FormData()
+            formData.append('project_id', project_id)
+            formData.append('owner_id', owner_id)
+            formData.append('name', name)
+            formData.append('description', description)
+            formData.append('preview', preview)
+            axios.get('/sacntum/csrf-cookie').then(response => {
+                axios.post('api/edit', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then(response => {
+                        if (response.data.success) {
+                            this.uploadCompleted = true
+                            this.errors = null
+                            this.validationErrors = null
+                        } else {
+                            console.log(response.data.message)
+                            this.errors = response.data.message
+                        }
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            this.validationErrors = error.response.data.errors
+                        }
+                    })
+            }) 
         },
         async deleteProject(id) {
             axios.get('/sacntum/csrf-cookie').then(response => {

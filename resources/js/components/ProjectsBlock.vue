@@ -10,9 +10,10 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-success">View</button>
-                                <router-link :to="{ name: 'CreateProject' }" type="button"
-                                    class="btn text-white btn-sm btn-warning">Edit</router-link>
-                                <button type="submit" @click.prevent="deleteOne(project._id)"
+                                <router-link v-if="isMineProjects" :to="{
+                                    name: 'CreateProject', query: { id: project._id }
+                                }" type="button" class="btn text-white btn-sm btn-primary">Edit</router-link>
+                                <button v-if="isMineProjects" type="submit" @click.prevent="deleteOne(project._id)"
                                     class="btn btn-sm btn-danger">Delete</button>
                             </div>
                         </div>
@@ -39,6 +40,7 @@ export default {
     },
     props: {
         projects: Object,
+        isMineProjects: Boolean,
     }
 }
 </script>

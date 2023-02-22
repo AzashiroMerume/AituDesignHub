@@ -12,7 +12,7 @@
             <hr class="feature-divider">
         </div>
         <div class="home-body">
-            <projects-block :projects="projects"></projects-block>
+            <projects-block :projects="projects" :isMineProjects="false"></projects-block>
         </div>
     </div>
 </template>

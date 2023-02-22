@@ -20,6 +20,7 @@ Route::get('/projects', [ProjectController::class, 'getAllProjects']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/myprojects', [ProjectController::class, 'getAllMyProjects']);
     Route::post('/create', [ProjectController::class, 'createProject']);
+    Route::post('/edit', [ProjectController::class, 'editProject']);
     Route::post('/delete', [ProjectController::class, 'deleteProject']);
     Route::post('/logout', [UserController::class, 'logout']);
 });
