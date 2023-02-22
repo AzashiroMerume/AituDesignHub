@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -38,7 +39,8 @@ class ProjectController extends Controller
                 'owner_id' => Auth::user()->_id,
                 'name' => $attr['name'],
                 'description' => $attr['description'],
-                'preview' => url('/storage/' . $path),
+                'preview_url' => url('/storage/' . $path),
+                'preview_name' => $path,
             ]);
 
             $success = true;
@@ -60,9 +62,11 @@ class ProjectController extends Controller
     {
         $id = $request->id;
         if (Auth::check()) {
+            $file_path = Project::find($id)->preview_name;
+            Storage::disk('public')->delete($file_path);
             Project::destroy($id);
-            $success = true;
-            $message = 'Project created successfully';
+            $success = $file_path;
+            $message = 'Project deleted successfully';
         } else {
             $success = false;
             $message = 'Log in first';

@@ -22,7 +22,8 @@ class Project extends Model
         'owner_id',
         'name',
         'description',
-        'preview',
+        'preview_url',
+        'preview_name'
     ];
 
 

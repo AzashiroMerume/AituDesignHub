@@ -26,7 +26,8 @@ return new class extends Migration
             $table->foreignId('owner_id')->references('id')->on('users');
             $table->string('name', 235);
             $table->longText('description')->nullable();
-            $table->text('preview');
+            $table->text('preview_url');
+            $table->text('preview_name');
             $table->timestamps();
         });
     }

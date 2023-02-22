@@ -5,7 +5,7 @@
                 <div class="col-8">
                     <h3 class="display-6 text-dark">My projects</h3>
                 </div>
-                <div class="col-4">
+                <div class="col-4 px-5 text-end">
                     <router-link to="/create" class="btn btn-success">Create Project</router-link>
                 </div>
             </div>

@@ -70,7 +70,6 @@ export const useProjectStore = defineStore('project', {
                     id: id
                 })
                     .then(response => {
-                        console.log(response)
                         if (response.data.success) {
                             console.log(response)
                         } else {
