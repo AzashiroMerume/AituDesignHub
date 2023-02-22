@@ -33,7 +33,7 @@ class ProjectController extends Controller
 
             //create proper handling 422 errors in vue store
             $generated_new_name = $request->preview->hashName();
-            $path = $request->preview->storeAs('previews', $generated_new_name);
+            $path = $request->preview->storeAs('previews', $generated_new_name, 'public');
             $project = Project::create([
                 'owner_id' => Auth::user()->_id,
                 'name' => $attr['name'],
