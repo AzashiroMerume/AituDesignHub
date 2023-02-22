@@ -23,8 +23,7 @@ return new class extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->unsignedBigInteger('owner_id');
-            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreignId('owner_id')->references('id')->on('users');
             $table->string('name', 235);
             $table->longText('description')->nullable();
             $table->text('preview');

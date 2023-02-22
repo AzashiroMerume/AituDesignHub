@@ -31,7 +31,7 @@ export const useUserStore = defineStore('user', {
                     .then(response => {
                         console.log(response)
                         if (response.data.success) {
-                            console.log('successs')
+                            console.log('login')
                             this.authenticated = true
                             this.user = response.data.user
                             this.error = null
@@ -60,7 +60,7 @@ export const useUserStore = defineStore('user', {
                     .then(response => {
                         console.log(response)
                         if (response.data.success) {
-                            console.log('success')
+                            console.log('register')
                             this.authenticated = true
                             this.user = response.data.user
                             this.error = null
@@ -89,7 +89,7 @@ export const useUserStore = defineStore('user', {
                             this.error = null
                             console.log(response.data.message)
                         } else {
-                            console.log('response')
+                            console.log(response.data.message)
                         }
                     })
                     .catch(function (error) {

@@ -3,14 +3,14 @@
         <div class="row p-4">
             <div class="col-md-4" v-for="project in projects">
                 <div class="card mb-4">
-                    <img class="card-img-top" src="{{ project.preview }}.jpg" alt="content">
+                    <img class="card-img-top" :src="project.preview" alt="content">
                     <div class="card-body">
                         <h4>{{ project.name }}</h4>
                         <p class="card-text">{{ project.description }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-success">View</button>
-                                <router-link :to="{ name: 'CreateProject'}" type="button"
+                                <router-link :to="{ name: 'CreateProject' }" type="button"
                                     class="btn text-white btn-sm btn-warning">Edit</router-link>
                                 <button type="submit" @click.prevent="deleteOne(project._id)"
                                     class="btn btn-sm btn-danger">Delete</button>
@@ -32,21 +32,14 @@ export default {
 
         return { projectStore }
     },
-    data() {
-        return {
-
-        }
-    },
     methods: {
         deleteOne(id) {
             this.projectStore.deleteProject(id)
         }
     },
     props: {
-        projects: Array,
+        projects: Object,
     }
 }
 </script>
-<style>
-
-</style>
+<style></style>

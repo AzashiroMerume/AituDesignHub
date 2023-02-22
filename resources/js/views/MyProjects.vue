@@ -27,13 +27,13 @@ export default {
         const projectStore = useProjectStore()
         const userStore = useUserStore()
 
-        projectStore.getMyProjects();
+        projectStore.getMyProjects()
 
         return { projectStore, userStore }
     },
     computed: {
         myprojects() {
-            return this.projectStore.allProjects;
+            return this.projectStore.allMyProjects
         }
     },
     watch: {

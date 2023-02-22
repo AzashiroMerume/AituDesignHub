@@ -17,7 +17,8 @@ class ProjectController extends Controller
 
     public function getAllMyProjects()
     {
-        $myProjects = Project::where('id', Auth::user()->_id);
+        $user_id = Auth::user()->_id;
+        $myProjects = Project::where('owner_id', $user_id)->get();
         return response()->json($myProjects);
     }
 
@@ -34,9 +35,10 @@ class ProjectController extends Controller
             $generated_new_name = $request->preview->hashName();
             $path = $request->preview->storeAs('previews', $generated_new_name);
             $project = Project::create([
+                'owner_id' => Auth::user()->_id,
                 'name' => $attr['name'],
                 'description' => $attr['description'],
-                'preview' => $generated_new_name,
+                'preview' => url('/storage/' . $path),
             ]);
 
             $success = true;

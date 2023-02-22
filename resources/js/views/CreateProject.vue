@@ -10,14 +10,26 @@
                     </div>
                     <div class="my-4">
                         <label for="name" class="form-label h5">Project Name</label>
+                        <div class="alert alert-danger"
+                            v-if="projectStore.validationErrors && projectStore.validationErrors.name" role="alert">
+                            {{ projectStore.validationErrors.name.toString() }}
+                        </div>
                         <input type="text" class="form-control form-control-sm" v-model="name">
                     </div>
                     <div class="my-4">
                         <label for="description" class="form-label h5">Project Description</label>
+                        <div class="alert alert-danger"
+                            v-if="projectStore.validationErrors && projectStore.validationErrors.description" role="alert">
+                            {{ projectStore.validationErrors.description.toString() }}
+                        </div>
                         <input type="text" class="form-control form-control-sm" v-model="description">
                     </div>
                     <div class="my-4">
                         <label for="preview_img" class="form-label h5">Preview Image</label>
+                        <div class="alert alert-danger"
+                            v-if="projectStore.validationErrors && projectStore.validationErrors.preview" role="alert">
+                            {{ projectStore.validationErrors.preview.toString() }}
+                        </div>
                         <input type="file" class="form-control form-control-sm" accept="image/*" @change="onFileChange">
                     </div>
                     <button type="submit" @click.prevent="create" class="btn btn-danger">Create</button>

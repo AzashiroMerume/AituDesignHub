@@ -6,6 +6,7 @@ export const useProjectStore = defineStore('project', {
         return {
             projects: [],
             myprojects: [],
+            errors: null,
             validationErrors: null,
         };
     },
@@ -23,7 +24,7 @@ export const useProjectStore = defineStore('project', {
                 const res = await axios.get('http://localhost/api/projects')
                 this.projects = res.data
             } catch (error) {
-                return error
+                console.log(error)
             }
         },
         async getMyProjects() {
@@ -31,7 +32,7 @@ export const useProjectStore = defineStore('project', {
                 const res = await axios.get('http://localhost/api/myprojects')
                 this.myprojects = res.data
             } catch (error) {
-                return error
+                console.log(error)
             }
         },
         async createProject(name, description, preview) {
@@ -50,11 +51,14 @@ export const useProjectStore = defineStore('project', {
                         if (response.data.success) {
                             console.log(response)
                         } else {
-                            console.log('response')
+                            console.log(response.data.message)
+                            this.error = response.data.message
                         }
                     })
-                    .catch(function (error) {
-                        console.error(error)
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            this.validationErrors = error.response.data.errors
+                        }
                     })
             })
         },
@@ -68,7 +72,8 @@ export const useProjectStore = defineStore('project', {
                         if (response.data.success) {
                             console.log(response)
                         } else {
-                            console.log('response')
+                            console.log(response.data.message)
+                            this.error = response.data.message
                         }
                     })
                     .catch(function (error) {

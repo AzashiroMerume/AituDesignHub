@@ -21,20 +21,15 @@ import ProjectsBlock from '../components/ProjectsBlock.vue'
 import { useProjectStore } from '../stores/ProjectStore'
 
 export default {
-    name: 'home',
+    name: 'Home',
     setup() {
         const projectStore = useProjectStore()
-        projectStore.getProjects();
+        projectStore.getProjects()
         return { projectStore }
-    },
-    data() {
-        return {
-
-        }
     },
     computed: {
         projects() {
-            return this.projectStore.allProjects;
+            return this.projectStore.allProjects
         }
     },
     components: {
