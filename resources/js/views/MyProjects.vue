@@ -9,6 +9,7 @@
                     <router-link to="/create" class="btn btn-success">Create Project</router-link>
                 </div>
             </div>
+            <hr class="feature-divider">
         </div>
         <div class="home-body">
             <projects-block :projects="myprojects" :isMineProjects="true"></projects-block>
