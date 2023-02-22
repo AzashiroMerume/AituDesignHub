@@ -6,6 +6,7 @@ export const useProjectStore = defineStore('project', {
         return {
             projects: [],
             myprojects: [],
+            viewProject: [],
             errors: null,
             validationErrors: null,
             uploadCompleted: false,
@@ -32,6 +33,14 @@ export const useProjectStore = defineStore('project', {
             try {
                 const res = await axios.get('http://localhost/api/myprojects')
                 this.myprojects = res.data
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        async getProjectById(id) {
+            try {
+                const res = await axios.get('http://localhost/api/projects/' + id)
+                this.viewProject = res.data
             } catch (error) {
                 console.log(error)
             }
@@ -92,7 +101,7 @@ export const useProjectStore = defineStore('project', {
                             this.validationErrors = error.response.data.errors
                         }
                     })
-            }) 
+            })
         },
         async deleteProject(id) {
             axios.get('/sacntum/csrf-cookie').then(response => {

@@ -7,6 +7,7 @@ import Register from "../views/Register.vue"
 import Login from "../views/Login.vue"
 import MyProjects from "../views/MyProjects.vue"
 import CreateProject from "../views/CreateProject.vue"
+import ViewProject from "../views/ViewProject.vue"
 
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
         name: "CreateProject",
         component: CreateProject
     },
+    {
+        path: "/view",
+        name: "ViewProject",
+        component: ViewProject
+    }
 ]
 
 const router = createRouter({
@@ -61,7 +67,7 @@ router.beforeEach((to, from) => {
 
     if ((to.name == 'Login' || to.name == 'Register') && userStore.isAuthenticated) {
         return { name: 'Home' }
-    } else if ((to.name == 'MyProjects' || to.name == 'CreateProject') && !userStore.isAuthenticated) {
+    } else if ((to.name == 'MyProjects' || to.name == 'CreateProject' || to.name == 'ViewProject') && !userStore.isAuthenticated) {
         return { name: 'Login' }
     }
 })

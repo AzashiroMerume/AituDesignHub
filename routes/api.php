@@ -16,6 +16,7 @@ use App\Http\Controllers\API\UserController;
 */
 
 Route::get('/projects', [ProjectController::class, 'getAllProjects']);
+Route::get('/projects/{id}', [ProjectController::class, 'getProjectById']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/myprojects', [ProjectController::class, 'getAllMyProjects']);

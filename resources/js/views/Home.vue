@@ -24,7 +24,9 @@ export default {
     name: 'Home',
     setup() {
         const projectStore = useProjectStore()
+
         projectStore.getProjects()
+        
         return { projectStore }
     },
     computed: {

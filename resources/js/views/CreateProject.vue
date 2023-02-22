@@ -38,7 +38,8 @@
                         </div>
                         <input type="file" class="form-control form-control-sm" accept="image/*" @change="onFileChange">
                     </div>
-                    <button type="submit" @click.prevent="edit" v-if="this.$route.query.id" class="btn btn-primary">Edit</button>
+                    <button type="submit" @click.prevent="edit" v-if="this.$route.query.id"
+                        class="btn btn-primary">Edit</button>
                     <button type="submit" @click.prevent="create" v-else class="btn btn-outline-danger">Create</button>
                 </div>
             </div>

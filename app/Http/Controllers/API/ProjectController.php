@@ -23,6 +23,20 @@ class ProjectController extends Controller
         return response()->json($myProjects);
     }
 
+    public function getProjectById($id)
+    {
+        $project = Project::find($id);
+
+        if (!$project) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Project not found',
+            ]);
+        }
+
+        return response()->json($project);
+    }
+
     public function createProject(Request $request)
     {
         if (Auth::check()) {

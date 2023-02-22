@@ -9,7 +9,7 @@
                         <p class="card-text">{{ project.description }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-success">View</button>
+                                <router-link :to="{ name: 'ViewProject', query: { id: project._id } }" class="btn btn-sm btn-success">View</router-link>
                                 <router-link v-if="isMineProjects" :to="{
                                     name: 'CreateProject', query: { id: project._id }
                                 }" type="button" class="btn text-white btn-sm btn-primary">Edit</router-link>
