@@ -129,16 +129,20 @@ class ProjectController extends Controller
     public function deleteProject(Request $request)
     {
         $id = $request->id;
-        if (Auth::check()) {
-            $file_path = Project::find($id)->preview_name;
-            Storage::disk('public')->delete($file_path);
-            Project::destroy($id);
-            $success = $file_path;
-            $message = 'Project deleted successfully';
-        } else {
-            $success = false;
-            $message = 'Log in first';
+        $project = Project::find($id);
+
+        if ($project->owner_id != Auth::user()->_id) {
+            return response()->json([
+                'success' => false,
+                'message' => 'You are not authorized to edit this project',
+            ]);
         }
+
+
+        Storage::disk('public')->delete($project->preview_name);
+        Project::destroy($id);
+        $success = true;
+        $message = 'Project deleted successfully';
 
         $response = [
             'success' => $success,

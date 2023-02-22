@@ -41,8 +41,6 @@ export default {
             return this.projectStore.viewProject
         },
         owner() {
-            console.log(this.projectStore.viewProject.owner_id, "owner")
-            console.log(this.userStore.user._id, "user")
             if (this.projectStore.viewProject.owner_id == this.userStore.user._id) {
                 return true;
             }
