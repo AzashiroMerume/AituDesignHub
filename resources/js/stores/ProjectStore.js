@@ -8,6 +8,7 @@ export const useProjectStore = defineStore('project', {
             myprojects: [],
             errors: null,
             validationErrors: null,
+            uploadCompleted: false,
         };
     },
     getters: {
@@ -38,9 +39,8 @@ export const useProjectStore = defineStore('project', {
         async createProject(name, description, preview) {
             let formData = new FormData()
             formData.append('name', name)
-            formData.append('description', description);
+            formData.append('description', description)
             formData.append('preview', preview)
-            console.log(preview);
             axios.get('/sacntum/csrf-cookie').then(response => {
                 axios.post('api/create', formData, {
                     headers: {
@@ -49,7 +49,9 @@ export const useProjectStore = defineStore('project', {
                 })
                     .then(response => {
                         if (response.data.success) {
-                            console.log(response)
+                            this.uploadCompleted = true
+                            this.errors = null
+                            this.validationErrors = null
                         } else {
                             console.log(response.data.message)
                             this.error = response.data.message

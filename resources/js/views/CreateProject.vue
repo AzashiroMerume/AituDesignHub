@@ -78,6 +78,16 @@ export default {
             }
         }
     },
-
+    watch: {
+        'projectStore.uploadCompleted': {
+            immediate: true,
+            async handler() {
+                if (this.projectStore.uploadCompleted) {
+                    this.$router.push('/myprojects')
+                    this.projectStore.uploadCompleted = false
+                }
+            }
+        }
+    },
 }
 </script>
