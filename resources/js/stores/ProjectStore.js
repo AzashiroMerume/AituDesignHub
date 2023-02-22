@@ -71,7 +71,8 @@ export const useProjectStore = defineStore('project', {
                 })
                     .then(response => {
                         if (response.data.success) {
-                            console.log(response)
+                            this.getProjects();
+                            this.getMyProjects();
                         } else {
                             console.log(response.data.message)
                             this.error = response.data.message
