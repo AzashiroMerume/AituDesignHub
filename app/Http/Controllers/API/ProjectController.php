@@ -18,7 +18,7 @@ class ProjectController extends Controller
         if ($projects->isEmpty()) {
             return response()->json([]);
         }
-        
+
         return response()->json($projects);
     }
 
@@ -71,7 +71,7 @@ class ProjectController extends Controller
                 $imagePath = $image->storeAs('content_images', $generated_new_name, 'public');
                 $project_content = ProjectContent::create([
                     'project_id' => $project->id,
-                    'image_name' => $generated_new_name,
+                    'image_name' => $imagePath,
                     'image_path' => url('/storage/' . $imagePath),
                 ]);
             }
@@ -150,7 +150,7 @@ class ProjectController extends Controller
     public function deleteProject(Request $request)
     {
         $id = $request->id;
-        $project = Project::find($id);
+        $project = Project::with('content')->find($id);
 
         if ($project->owner_id != Auth::user()->_id) {
             return response()->json([
@@ -161,6 +161,10 @@ class ProjectController extends Controller
 
 
         Storage::disk('public')->delete($project->preview_name);
+        foreach ($project->content as $projectContent) {
+            Storage::disk('public')->delete($projectContent->image_name);
+            $projectContent->delete();
+        }
         Project::destroy($id);
         $success = true;
         $message = 'Project deleted successfully';
