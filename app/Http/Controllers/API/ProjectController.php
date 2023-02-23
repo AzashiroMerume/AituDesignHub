@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\ProjectContent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,11 @@ class ProjectController extends Controller
     public function getAllProjects()
     {
         $projects = Project::all();
+
+        if ($projects->isEmpty()) {
+            return response()->json([]);
+        }
+        
         return response()->json($projects);
     }
 
@@ -25,7 +31,8 @@ class ProjectController extends Controller
 
     public function getProjectById($id)
     {
-        $project = Project::find($id);
+        $project = Project::with('content')->find($id);
+
 
         if (!$project) {
             return response()->json([
@@ -39,38 +46,52 @@ class ProjectController extends Controller
 
     public function createProject(Request $request)
     {
-        if (Auth::check()) {
-            $attr = $request->validate([
-                'name' => 'required|string|max:255',
-                'description' => 'required|string|max:1000',
-                'preview' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
-            ]);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'preview' => 'required|file|mimes:jpeg,png,jpg,gif,svg',
+            'images' => 'required|array',
+            'images.*' => 'required|file|mimes:jpeg,png,jpg,gif,svg'
+        ]);
 
-            //create proper handling 422 errors in vue store
-            $generated_new_name = $request->preview->hashName();
-            $path = $request->preview->storeAs('previews', $generated_new_name, 'public');
+        try {
+            $generated_new_name = $validatedData['preview']->hashName();
+            $path = $validatedData['preview']->storeAs('previews', $generated_new_name, 'public');
+
             $project = Project::create([
                 'owner_id' => Auth::user()->_id,
-                'name' => $attr['name'],
-                'description' => $attr['description'],
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
                 'preview_url' => url('/storage/' . $path),
                 'preview_name' => $path,
             ]);
 
-            $success = true;
-            $message = 'Project created successfully';
-        } else {
-            $success = false;
-            $message = 'You are not logged yet';
+            foreach ($validatedData['images'] as $image) {
+                $generated_new_name = $image->hashName();
+                $imagePath = $image->storeAs('content_images', $generated_new_name, 'public');
+                $project_content = ProjectContent::create([
+                    'project_id' => $project->id,
+                    'image_name' => $generated_new_name,
+                    'image_path' => url('/storage/' . $imagePath),
+                ]);
+            }
+
+            $response = [
+                'success' => true,
+                'message' => 'Project created successfully',
+            ];
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response = [
+                'success' => false,
+                'message' => 'An error occurred while creating the project',
+            ];
+
+            return response()->json($response);
         }
-
-        $response = [
-            'success' => $success,
-            'message' => $message,
-        ];
-
-        return response()->json($response);
     }
+
 
     public function editProject(Request $request)
     {

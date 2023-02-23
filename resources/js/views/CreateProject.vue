@@ -31,12 +31,21 @@
                             placeholder="Your description here" v-model="description"></textarea>
                     </div>
                     <div class="my-4">
-                        <label for="preview_img" class="form-label h5">Preview Image</label>
+                        <label for="preview_img" class="form-label h5">Preview</label>
                         <div class="alert alert-danger"
                             v-if="projectStore.validationErrors && projectStore.validationErrors.preview" role="alert">
                             {{ projectStore.validationErrors.preview.toString() }}
                         </div>
-                        <input type="file" class="form-control form-control-sm" accept="image/*" @change="onFileChange">
+                        <input type="file" class="form-control form-control-sm" accept="image/*" @change="OnPreviewChange">
+                    </div>
+                    <div class="my-4">
+                        <label for="project_contents" class="form-label h5">Content Images</label>
+                        <div class="alert alert-danger"
+                            v-if="projectStore.validationErrors && projectStore.validationErrors.images" role="alert">
+                            {{ projectStore.validationErrors.images.toString() }}
+                        </div>
+                        <input type="file" class="form-control form-control-sm" accept="image/*" multiple
+                            @change="OnContentImagesChange">
                     </div>
                     <button type="submit" @click.prevent="edit" v-if="this.$route.query.id"
                         class="btn btn-primary">Edit</button>
@@ -64,18 +73,22 @@ export default {
             name: '',
             description: '',
             preview: '',
+            images: [],
         }
     },
     methods: {
         async create() {
-            await this.projectStore.createProject(this.name, this.description, this.preview)
+            await this.projectStore.createProject(this.name, this.description, this.preview, this.images)
         },
         async edit() {
             await this.projectStore.editProject(this.$route.query.id, this.userStore.user.id, this.name, this.description, this.preview)
         },
-        onFileChange(e) {
+        OnPreviewChange(e) {
             this.preview = e.target.files[0]
         },
+        OnContentImagesChange(e) {
+            this.images = e.target.files;
+        }
     },
     watch: {
         'userStore.isAuthenticated': {

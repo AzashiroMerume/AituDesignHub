@@ -10,7 +10,9 @@
             <hr class="feature-divider">
             <div class="py-3">
                 <h3>Images:</h3>
-
+                <div v-for="content in project.content" :key="content.id">
+                    <img :src="content.image_path" :alt="content.image_name">
+                </div>
             </div>
             <hr class="feature-divider">
             <div class="py-3">

@@ -2,7 +2,7 @@
     <div class="projects text-center">
         <div class="row p-4">
             <div class="col-md-4" v-for="project in projects">
-                <div class="card mb-4">
+                <div class="card mb-4" style="width: 20rem;">
                     <img class="card-img-top" :src="project.preview_url" :alt="project.preview_name" loading="lazy">
                     <div class="card-body">
                         <h4>{{ project.name }}</h4>
